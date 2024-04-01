@@ -13,6 +13,9 @@ void main() {
     // Smoke
     float smoke = texture(uPerlinTexture, smokeUv).r; // retrieve only the R channel out of the RGB
 
+    // Remap using smoothstep which returns a clamped value between 0 and 1
+    smoke = smoothstep(0.4, 1.0, smoke); // first parameter is the bottom value where it begins and then it eases until the end using the second parameter
+
     // Final color
     gl_FragColor = vec4(1.0, 1.0, 1.0, smoke);
     #include <tonemapping_fragment>
