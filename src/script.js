@@ -99,7 +99,8 @@ const smokeMaterial = new THREE.ShaderMaterial({
     uniforms: {
         uPerlinTexture: new THREE.Uniform(perlinTexture) // replaces the so far used { value: perlinTexture } syntax
     },
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
+    transparent: true
     // wireframe: true
 })
 
