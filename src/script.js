@@ -2,6 +2,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import GUI from 'lil-gui'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import coffeeSmokeVertexShader from './shaders/coffeeSmoke/vertex.glsl';
+import coffeeSmokeFragmentShader from './shaders/coffeeSmoke/fragment.glsl';
 
 /**
  * Base
@@ -88,8 +90,9 @@ smokeGeometry.translate(0, 0.5, 0);
 smokeGeometry.scale(1.5, 6, 1.5);
 
 // Material
-const smokeMaterial = new THREE.MeshBasicMaterial({
-    color: 'cyan',
+const smokeMaterial = new THREE.ShaderMaterial({
+    vertexShader: coffeeSmokeVertexShader,
+    fragmentShader: coffeeSmokeFragmentShader,
     wireframe: true
 })
 
