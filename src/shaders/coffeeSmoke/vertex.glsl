@@ -23,6 +23,14 @@ void main() {
     float angle = twistPerlin * 10.0; // elevation
     newPosition.xz = rotate2D(newPosition.xz, angle);
 
+    // Wind animation using the texture as to give randomness
+    vec2 windOffset = vec2(
+        texture(uPerlinTexture, vec2(0.25, uTime * 0.01)).r - 0.5, // r channel again, and vec2 takes 0.25 as for the x axis of the texture and uTime as the y axis, while the 0.5 subtracted after the .r makes it possible for the smoke to move both in the positive and negative x axis
+        texture(uPerlinTexture, vec2(0.75, uTime * 0.01)).r - 0.5 // moves on the z axis
+    );
+    windOffset *= pow(uv.y, 3.0) * 10.0; // this value locks the lower bottom of the smoke above the coffee, and we use the pow function as to gradually release the smoke and let it be "hit  by the wind 
+    newPosition.xz += windOffset;
+
     // Final position
     gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
 
