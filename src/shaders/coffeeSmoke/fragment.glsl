@@ -16,6 +16,12 @@ void main() {
     // Remap using smoothstep which returns a clamped value between 0 and 1
     smoke = smoothstep(0.4, 1.0, smoke); // first parameter is the bottom value where it begins and then it eases until the end using the second parameter
 
+    // Edges of the texture, left and right side
+    smoke *= smoothstep(0.0, 0.1, vUv.x);
+    smoke *= smoothstep(1.0, 0.9, vUv.x);
+    smoke *= smoothstep(0.0, 0.1, vUv.y);
+    smoke *= smoothstep(1.0, 0.4, vUv.y);
+
     // Final color
     gl_FragColor = vec4(1.0, 1.0, 1.0, smoke);
     #include <tonemapping_fragment>
