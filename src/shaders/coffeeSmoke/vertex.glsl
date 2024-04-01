@@ -3,13 +3,7 @@ uniform sampler2D uPerlinTexture;
 
 varying vec2 vUv;
 
-vec2 rotate2D(vec2 value, float angle)
-{
-    float s = sin(angle);
-    float c = cos(angle);
-    mat2 m = mat2(c, s, -s, c);
-    return m * value;
-}
+#include ../includes/rotate2D.glsl // syntax is slightly different from the one used for three js files: #include <tonemapping_fragment>
 
 void main() {
     vec3 newPosition = position; // you can't change directly an attribute, so position is changed using another variable
